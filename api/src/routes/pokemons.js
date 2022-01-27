@@ -21,12 +21,24 @@ router.get("/", async (req, res, next) => {
         return res.json(getPokemonsDb);
       }
 
-      let getPokemonsApi = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${name}`
-      );
-
+      let getPokemonsApi = await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then((e) => {
+          return {
+            id: e.data.id,
+            name: e.data.name,
+            attack: e.data.stats[1]["base_stat"],
+            image:
+              e.data.sprites.versions["generation-v"]["black-white"].animated[
+                "front_default"
+              ],
+            types: e.data.types.map((e) => {
+              return e.type.name;
+            }),
+          };
+        });
       if (getPokemonsApi) {
-        return res.json(getPokemonsApi.data);
+        return res.json(getPokemonsApi);
       }
     } else {
       let getPokemonsDb = await Pokemon.findAll({
@@ -36,13 +48,14 @@ router.get("/", async (req, res, next) => {
 
       var getPokemonsApi = [];
 
-      for (let i = 1; i < 4; i++) {
+      for (let i = 1; i < 41; i++) {
         let pokemonsApi = await axios
           .get(`https://pokeapi.co/api/v2/pokemon/${i}`)
           .then((e) => {
             return {
               id: e.data.id,
               name: e.data.name,
+              attack: e.data.stats[1]["base_stat"],
               image:
                 e.data.sprites.versions["generation-v"]["black-white"].animated[
                   "front_default"
