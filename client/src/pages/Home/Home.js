@@ -1,5 +1,8 @@
 import Navbar from "../../components/Navbar/Navbar";
-import Cards from "../../components/Cards/Cards";
+import Pagination from "../../components/Pagination/Pagination";
+import Pokemon from "../../components/Pokemon/Pokemon";
+import FilterType from "../../components/FilterType/FilterType";
+import Filtered from "../../components/Filtered/Filtered";
 
 import { getPokemons } from "../../redux/actions/actions";
 import { useEffect } from "react";
@@ -7,18 +10,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const pokemons = useSelector(state=>state.pokemons)
+  const pokemon = useSelector((state) => state.onePokemon);
+  const pokemonsType = useSelector((state) => state.pokemonsType);
 
   useEffect(() => {
-    if(pokemons.length === 0){
-      dispatch(getPokemons());
-    }
-  }, [dispatch,pokemons]);
+    dispatch(getPokemons());
+  }, [dispatch]);
 
   return (
     <>
       <Navbar />
-      <Cards />
+      {pokemon && <Pokemon />}
+      <FilterType />
+      {pokemonsType.length > 0 ? <Filtered /> : <Pagination />}
     </>
   );
 }

@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postPokemon } from "../../redux/actions/actions";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getTypes,updatePokemons } from "../../redux/actions/actions";
+import { getTypes } from "../../redux/actions/actions";
 
 export default function Create() {
-  const redir = useNavigate()
+  const redir = useNavigate();
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
   const [type, setType] = useState();
@@ -23,11 +23,25 @@ export default function Create() {
     types: [],
   });
 
+  useEffect(() => {
+    var arr = [];
+    for (const key in type) {
+      arr.push(key);
+    }
+    setData({
+      ...data,
+      types: arr,
+    });
+  }, [type]);
+
+  useEffect(() => {
+    dispatch(getTypes());
+  }, [dispatch]);
+
   function onSubmit(e) {
     e.preventDefault();
     dispatch(postPokemon(data));
-    dispatch(updatePokemons(data))
-    redir('/home')
+    redir("/home");
   }
 
   function onClickType(e) {
@@ -45,21 +59,6 @@ export default function Create() {
       [e.target.name]: e.target.value,
     });
   }
-
-  useEffect(() => {
-    var arr = []
-    for (const key in type) {
-      arr.push(key)
-    }
-    setData({
-      ...data,
-      types: arr,
-    });
-  }, [type]);
-
-  useEffect(() => {
-    dispatch(getTypes());
-  }, [dispatch]);
 
   return (
     <>
@@ -124,10 +123,15 @@ export default function Create() {
         </label>
         <label>Types:</label>
 
-        <div >
-          {types[0]?.map((type) => {
+        <div>
+          {types[0]?.map((type, index) => {
             return (
-              <button onClick={onClickType}  name={type} value={type} >
+              <button
+                key={index}
+                onClick={onClickType}
+                name={type}
+                value={type}
+              >
                 {type}
               </button>
             );

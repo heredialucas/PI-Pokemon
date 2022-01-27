@@ -1,10 +1,16 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import Search from "../Search/Search";
 
-export default function Navbar(){
-    return (
-        <>
-            <h1>NAV BAR</h1>
-            <NavLink to='/create'>Create</NavLink>
-        </>
-    )
+import s from './Navbar.module.scss'
+
+export default function Navbar() {
+  return (
+    <>
+      <div className={s.container}>
+        <h1>Pokemon</h1>
+        <NavLink className={s.navlink} to="/create">Create Pokemon</NavLink>
+        <Search />
+      </div>
+    </>
+  );
 }

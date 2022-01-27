@@ -15,9 +15,9 @@ export default function Detail() {
 
   return (
     <div>
-      {pokemonDetail?.map((pokemon) => {
+      {pokemonDetail?.map((pokemon, index) => {
         return (
-          <div>
+          <div key={index}>
             <h3>{pokemon.name}</h3>
             <img src={pokemon.image} alt={pokemon.name} />
             <p>{pokemon.attack}</p>
@@ -27,8 +27,8 @@ export default function Detail() {
             <p>{pokemon.speed}</p>
             <p>{pokemon.weight}</p>
             <ul>
-              {pokemon.types?.map((type) => {
-                return <li>{type}</li>;
+              {pokemon.types?.map((type,index) => {
+                return <li key={index}>{type}</li>;
               })}
             </ul>
           </div>
