@@ -42,6 +42,9 @@ export default function FilterType() {
                 </button>
               );
             })}
+          <button className={s.btnAll} onClick={onFilterType} name="created" value="created">
+            Created
+          </button>
           <button className={s.btnAll} onClick={onFilterType} name="all" value="all">
             All
           </button>

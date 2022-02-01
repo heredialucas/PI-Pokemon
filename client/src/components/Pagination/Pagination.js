@@ -1,4 +1,5 @@
 import Cards from "../Cards/Cards";
+
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -19,12 +20,33 @@ export default function Pagination() {
       setPage(page + 1);
     }
   }
+
   function onPagePrevious(e) {
     e.preventDefault();
     if (page > 0) {
       setPage(page - 1);
     }
   }
+
+  // function Pagination() {
+
+  //   page
+
+  //   return (
+  //     <div className={s.container}>
+  //       <div className={s.containerBtn}>
+  //         <button onClick={onPagePrevious}>Previous</button>
+  //         <button onClick={onPageNext}>Next</button>
+  //       </div>
+  //       {pokemons.length > 0 && <Cards page={page0} />}
+  //       <div className={s.containerBtn}>
+  //         <button onClick={onPagePrevious}>Previous</button>
+  //         <button onClick={onPageNext}>Next</button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   if (page === 0 && page0.length > 0) {
     return (
       <div className={s.container}>
@@ -33,7 +55,7 @@ export default function Pagination() {
           <button onClick={onPageNext}>Next</button>
         </div>
         {pokemons.length > 0 && <Cards page={page0} />}
-      <div className={s.containerBtn}>
+        <div className={s.containerBtn}>
           <button onClick={onPagePrevious}>Previous</button>
           <button onClick={onPageNext}>Next</button>
         </div>
@@ -81,5 +103,5 @@ export default function Pagination() {
         </div>
       </div>
     );
-  }else return <></>
+  } else return <></>;
 }

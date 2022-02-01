@@ -1,5 +1,6 @@
 import axios from "axios";
 export const GET_POKEMONS = "getPokemons";
+export const UPDATE_POKEMONS = "updatePokemons";
 export const SORT_POKEMONS = "sortPokemons";
 export const SORT_POKEMONS_ATTACK = "sortPokemonsAttack";
 export const GET_POKEMON_BY_NAME = "getPokemonByName";
@@ -16,6 +17,12 @@ export function getPokemons() {
   };
 }
 
+export function updatePokemons(value) {
+  return {
+    type: UPDATE_POKEMONS,
+    payload: value,
+  };
+}
 export function sortPokemons(value) {
   return {
     type: SORT_POKEMONS,
@@ -30,12 +37,12 @@ export function sortPokemonsAttack(value) {
 }
 
 export function getPokemonByName(name) {
-  return function (dispatch) {
-    return axios
+  return async function (dispatch) {
+    return await axios
       .get(`http://localhost:3001/api/pokemons?name=${name}`)
       .then((json) => {
         dispatch({ type: GET_POKEMON_BY_NAME, payload: json });
-      });
+      })
   };
 }
 
@@ -47,16 +54,16 @@ export function filterTypePokemons(data) {
 }
 
 export function getTypes() {
-  return function (dispatch) {
-    return axios.get(`http://localhost:3001/api/types/`).then((json) => {
+  return async function (dispatch) {
+    return await axios.get(`http://localhost:3001/api/types/`).then((json) => {
       dispatch({ type: GET_TYPES, payload: json });
     });
   };
 }
 
 export function postPokemon(data) {
-  return function (dispatch) {
-    return axios
+  return async function (dispatch) {
+    return await axios
       .post(`http://localhost:3001/api/pokemons/`, data)
       .then((json) => {
         dispatch({ type: POST_POKEMON, payload: json });
@@ -64,8 +71,8 @@ export function postPokemon(data) {
   };
 }
 export function getPokemonDetail(id) {
-  return function (dispatch) {
-    return axios
+  return async function (dispatch) {
+    return await axios
       .get(`http://localhost:3001/api/pokemons/${id}`)
       .then((json) => {
         dispatch({ type: GET_POKEMONDETAIL, payload: json });

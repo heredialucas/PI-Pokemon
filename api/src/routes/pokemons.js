@@ -10,15 +10,13 @@ router.get("/", async (req, res, next) => {
     if (name) {
       let getPokemonsDb = await Pokemon.findOne({
         where: {
-          name: {
-            [Op.iLike]: "%" + name + "%",
-          },
+          name: name,
         },
         attributes: { exclude: ["createdAt", "updatedAt"] },
         include: [{ model: Type, attributes: ["name"] }],
       });
       if (getPokemonsDb) {
-        return res.json(getPokemonsDb);
+        return res.status(200).json(getPokemonsDb);
       }
 
       let getPokemonsApi = await axios
@@ -38,7 +36,7 @@ router.get("/", async (req, res, next) => {
           };
         });
       if (getPokemonsApi) {
-        return res.json(getPokemonsApi);
+        return res.status(200).json(getPokemonsApi);
       }
     } else {
       let getPokemonsDb = await Pokemon.findAll({
@@ -80,10 +78,12 @@ router.get("/", async (req, res, next) => {
 
       let allPokemons = [...getPokemonsApi, ...pokemonsDb];
 
-      res.status(200).json(allPokemons);
+      if (allPokemons) {
+        res.status(200).json(allPokemons);
+      } 
     }
   } catch (error) {
-    next(error);
+    res.send("Error")
   }
 });
 
@@ -122,7 +122,7 @@ router.get("/:id", async (req, res, next) => {
       res.status(200).json(getPokemonsApi);
     }
   } catch (error) {
-    next(error);
+    res.json(error);
   }
 });
 

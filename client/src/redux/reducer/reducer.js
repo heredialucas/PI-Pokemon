@@ -1,4 +1,5 @@
 import { GET_POKEMONS } from "../actions/actions";
+import { UPDATE_POKEMONS } from "../actions/actions";
 import { SORT_POKEMONS } from "../actions/actions";
 import { SORT_POKEMONS_ATTACK } from "../actions/actions";
 import { GET_POKEMON_BY_NAME } from "../actions/actions";
@@ -21,6 +22,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: action.payload.data,
+      };
+    case UPDATE_POKEMONS:
+      action.payload.image =
+        "https://cdn.pixabay.com/photo/2016/08/15/00/50/pokeball-1594373_960_720.png";
+      return {
+        ...state,
+        pokemons: [...state.pokemons, action.payload],
       };
     case SORT_POKEMONS:
       const pokemonsSort =
@@ -69,7 +77,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_POKEMON_BY_NAME:
-      console.log(action.payload);
+      if (action.payload.data === "Error"){
+        alert("Pokemon not found");
+        return {...state}
+      } 
       return {
         ...state,
         onePokemon: action.payload.data,
@@ -79,6 +90,12 @@ function rootReducer(state = initialState, action) {
         return {
           ...state,
           pokemonsType: [],
+        };
+      }
+      if (action.payload === "created") {
+        return {
+          ...state,
+          pokemonsType: state.pokemons.filter((p) => p?.id?.length > 8),
         };
       }
       const pokemonsType = state.pokemons.filter((p) =>

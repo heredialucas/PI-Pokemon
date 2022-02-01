@@ -11,7 +11,6 @@
     width: 250px;
     height: 250px;
     margin: 30px;
-    // background: linear-gradient(to bottom, #70da33de, #31518c);
     border-radius: 20px;
     border-bottom-left-radius: 160px;
     border-bottom-right-radius: 160px;
@@ -53,7 +52,7 @@
         color: #fff;
         letter-spacing: 3px;
       }
-     
+
       ul {
         padding: 0;
         margin: 0;
@@ -78,22 +77,27 @@
     }
   }
 }
- 
-.card:hover{
-  transition: 0.2s;
-  opacity: .9;
-}
-.card:nth-child(1n){
-  background: linear-gradient(to bottom, #70da33de, #31518c);
 
-}
-.card:nth-child(2n){
-  background: linear-gradient(to bottom, #db5415de, #353735);
-
-}
-.card:nth-child(3n){
+.card:nth-child(1n):hover {
+  transition: 1s;
   background: linear-gradient(to bottom, #e6d81bde, #e82626);
-
+}
+.card:nth-child(2n):hover {
+  transition: 1s;
+  background: linear-gradient(to bottom, #70da33de, #31518c);
+}
+.card:nth-child(3n):hover {
+  transition: 1s;
+  background: linear-gradient(to bottom, #db5415de, #353735);
+}
+.card:nth-child(1n) {
+  background: linear-gradient(to bottom, #70da33de, #31518c);
+}
+.card:nth-child(2n) {
+  background: linear-gradient(to bottom, #db5415de, #353735);
+}
+.card:nth-child(3n) {
+  background: linear-gradient(to bottom, #e6d81bde, #e82626);
 }
 .card::before {
   content: "";
@@ -131,4 +135,3 @@
   border-top-left-radius: 50px;
   box-shadow: -15px -15px 0 15px #fff;
 }
-

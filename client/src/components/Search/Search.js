@@ -10,6 +10,7 @@ export default function Search() {
 
   function onSubmit(e) {
     e.preventDefault();
+    if(name === '') return alert('Debe ingresar un Pokemon')
     dispatch(getPokemonByName(name));
     setName('')
   }
@@ -20,10 +21,10 @@ export default function Search() {
 
   return (
     <>
-      <div className={s.container}>
+      <form className={s.container}>
         <input type="text" placeholder="Pokemon" onChange={onHandle} value={name} name="search" />
         <button onClick={onSubmit}>Search</button>
-      </div>
+      </form>
     </>
   );
 }

@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
     },
     hp: {
@@ -34,7 +35,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
     },
     image: {
-      type: DataTypes.BLOB,
+      type: DataTypes.TEXT,
+      allowNull:true
     },
   });
 };

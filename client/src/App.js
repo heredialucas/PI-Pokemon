@@ -7,14 +7,14 @@ import Create from "./components/Create/Create";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/home" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/create" element={<Create />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
