@@ -1,5 +1,7 @@
 import axios from "axios";
 export const GET_POKEMONS = "getPokemons";
+export const CLEAN_ONE_POKEMON = "cleanOnePokemon";
+export const SET_LOADING = "setLoading";
 export const UPDATE_POKEMONS = "updatePokemons";
 export const SORT_POKEMONS = "sortPokemons";
 export const SORT_POKEMONS_ATTACK = "sortPokemonsAttack";
@@ -17,6 +19,18 @@ export function getPokemons() {
   };
 }
 
+export function cleanOnePokemon(value) {
+  return {
+    type: CLEAN_ONE_POKEMON,
+    payload: value,
+  };
+}
+export function setLoading(value) {
+  return {
+    type: SET_LOADING,
+    payload: value,
+  };
+}
 export function updatePokemons(value) {
   return {
     type: UPDATE_POKEMONS,
@@ -39,9 +53,9 @@ export function sortPokemonsAttack(value) {
 export function getPokemonByName(name) {
   return async function (dispatch) {
     return await axios
-      .get(`http://localhost:3001/api/pokemons?name=${name}`)
-      .then((json) => {
-        dispatch({ type: GET_POKEMON_BY_NAME, payload: json });
+    .get(`http://localhost:3001/api/pokemons?name=${name}`)
+    .then((json) => {
+      dispatch({ type: GET_POKEMON_BY_NAME, payload: json });
       })
   };
 }

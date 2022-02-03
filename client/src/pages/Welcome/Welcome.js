@@ -10,9 +10,10 @@ export default function Welcome() {
       <div className={s.container}>
         <img className={s.wel} src={Wel} alt="welcome" />
         <img className={s.title} src={Title} alt="title" />
-        <NavLink className={s.btn} to="/home">
-          <span data-testid='span'>Home</span>
-        </NavLink>
+        <div className={s.btn}>
+          <span data-testid='span'>o</span>
+        </div>
+        <NavLink className={s.navlink} to='/home'>Home</NavLink>
       </div>
     </>
   );

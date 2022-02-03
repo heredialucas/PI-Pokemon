@@ -12,6 +12,6 @@ describe('Render Welcome page', () => {
         )
         const title = screen.getByTestId('span')
         expect(title).toBeInTheDocument()
-        expect(title).toHaveTextContent('Home')
+        expect(title).toHaveTextContent('o')
     })
 })

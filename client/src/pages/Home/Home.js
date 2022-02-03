@@ -16,15 +16,19 @@ export default function Home() {
   const pokemon = useSelector((state) => state.onePokemon);
   const pokemons = useSelector((state) => state.pokemons);
   const pokemonsType = useSelector((state) => state.pokemonsType);
+  const loading = useSelector((state) => state.loading);
 
   useEffect(() => {
-    dispatch(getPokemons());
-  }, [dispatch]);
+    if (pokemons.length === 0) {
+      dispatch(getPokemons());
+    }
+  }, [dispatch, pokemons]);
 
   return (
     <>
       <Navbar />
-      {pokemon && <Pokemon />}
+      {pokemon && !loading && <Pokemon />}
+      {loading && <Loading />}
       <FilterType />
       {pokemonsType.length > 0 ? <Filtered /> : <Pagination />}
       {pokemons.length === 0 && <Loading />}

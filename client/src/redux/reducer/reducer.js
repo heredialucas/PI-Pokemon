@@ -1,4 +1,6 @@
 import { GET_POKEMONS } from "../actions/actions";
+import { SET_LOADING } from "../actions/actions";
+import { CLEAN_ONE_POKEMON } from "../actions/actions";
 import { UPDATE_POKEMONS } from "../actions/actions";
 import { SORT_POKEMONS } from "../actions/actions";
 import { SORT_POKEMONS_ATTACK } from "../actions/actions";
@@ -14,6 +16,7 @@ const initialState = {
   onePokemon: [],
   pokemonDetail: [],
   types: [],
+  loading: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -23,9 +26,20 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokemons: action.payload.data,
       };
+    case CLEAN_ONE_POKEMON:
+      return {
+        ...state,
+        onePokemon: action.payload,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
     case UPDATE_POKEMONS:
       action.payload.image =
         "https://cdn.pixabay.com/photo/2016/08/15/00/50/pokeball-1594373_960_720.png";
+      alert("Pokémon successfully created");
       return {
         ...state,
         pokemons: [...state.pokemons, action.payload],
@@ -77,25 +91,35 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_POKEMON_BY_NAME:
-      if (action.payload.data === "Error"){
-        alert("Pokemon not found");
-        return {...state}
-      } 
+      if (action.payload.data === "Error") {
+        alert("Pokémon not found");
+        return { ...state, loading: false, onePokemon: [] };
+      }
       return {
         ...state,
+        loading: false,
         onePokemon: action.payload.data,
       };
     case FILTER_TYPE_POKEMONS:
+      if(state.pokemons.length === 0) {
+        alert('Type not found')
+        return{...state}
+      } 
       if (action.payload === "all") {
         return {
           ...state,
           pokemonsType: [],
         };
       }
+      const created = state.pokemons.filter(p=> p.id.length > 8)
+      if(created.length === 0 && action.payload === "created"){
+          alert('Created not found')
+        return{...state}
+      }
       if (action.payload === "created") {
         return {
           ...state,
-          pokemonsType: state.pokemons.filter((p) => p?.id?.length > 8),
+          pokemonsType: created,
         };
       }
       const pokemonsType = state.pokemons.filter((p) =>

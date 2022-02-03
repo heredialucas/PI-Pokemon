@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const { Pokemon, Type } = require("../db");
-const { Op } = require("sequelize");
 const router = Router();
 const axios = require("axios");
 
@@ -80,10 +79,10 @@ router.get("/", async (req, res, next) => {
 
       if (allPokemons) {
         res.status(200).json(allPokemons);
-      } 
+      }
     }
   } catch (error) {
-    res.send("Error")
+    res.send("Error");
   }
 });
 

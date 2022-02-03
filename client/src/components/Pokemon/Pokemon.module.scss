@@ -1,59 +1,9 @@
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  justify-content: space-evenly;
   margin-left: 150px;
-
-  .containerBtn {
-    display: flex;
-    .btn {
-      background: linear-gradient(
-        0deg,
-        rgb(232, 230, 230) 50%,
-        rgba(175, 30, 33, 0.974) 50%
-      );
-      box-shadow: 0 0 5px 2px black, 0 0px 1px 0.5px rgb(0, 0, 0);
-      display: flex;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
-      color: black;
-      text-align: center;
-      background-color: rgb(255, 255, 255);
-      text-decoration: none;
-      z-index: 100;
-      text-shadow: 0 0 5px 2px black;
-      font-size: 13px;
-      padding: 0;
-      margin: 10px;
-      border-width: 0;
-
-      .button {
-        position: relative;
-        background: #000;
-        color: rgb(255, 255, 255);
-        width: 100%;
-        font-weight: 700;
-        font-size: 13px;
-        border: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: 0px 0 3px 0px rgb(0, 0, 0);
-        z-index: 100;
-      }
-    }
-  }
-
-  .containerPokemons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
 
   .card {
     position: relative;
@@ -125,27 +75,56 @@
       }
     }
   }
+
+  .btn {
+    background: linear-gradient(
+      0deg,
+      rgb(232, 230, 230) 50%,
+      rgba(175, 30, 33, 0.974) 50%
+    );
+    box-shadow: 0 0 5px 2px black, 0 0px 5px 1px rgb(0, 0, 0);
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    z-index: 100;
+    text-shadow: 0 0 5px 5px black;
+    font-size: 17px;
+    padding: 0;
+    margin: 0;
+    border-width: 0;
+    
+
+    span {
+      position: relative;
+      background-color: black;
+      color: rgb(255, 255, 255);
+      font-weight: 700;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-shadow: 0px 0 3px 0px rgb(0, 0, 0);
+      z-index: 100;
+    }
+  }
+}
+.btn:hover{
+    cursor: pointer;
+    transform: rotate(-360deg);
+    transition: .5s;
 }
 
-.card:nth-child(1n):hover {
-  transition: 1s;
-  background: linear-gradient(to bottom, #e6d81bde, #e82626);
-}
-.card:nth-child(2n):hover {
-  transition: 1s;
-  background: linear-gradient(to bottom, #70da33de, #31518c);
-}
-.card:nth-child(3n):hover {
-  transition: 1s;
-  background: linear-gradient(to bottom, #db5415de, #353735);
-}
 .card:nth-child(1n) {
   background: linear-gradient(to bottom, #70da33de, #31518c);
 }
-.card:nth-child(2n) {
-  background: linear-gradient(to bottom, #db5415de, #353735);
-}
-.card:nth-child(3n) {
+.card:nth-child(1n):hover {
+  transition: 1s;
   background: linear-gradient(to bottom, #e6d81bde, #e82626);
 }
 .card::before {
@@ -185,11 +164,3 @@
   box-shadow: -15px -15px 0 15px #fff;
 }
 
-.btn:hover {
-  cursor: pointer;
-  transform: rotate(360deg);
-  transition: 0.3s;
-}
-.button:hover {
-  cursor: pointer;
-}

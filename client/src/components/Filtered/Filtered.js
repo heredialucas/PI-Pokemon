@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import './Filtered.scss'
 
 export default function Cards() {
   const pokemons = useSelector((state) => state.pokemonsType);
   return (
     <>
-      <div className="container">
+      <div className="containerFiltered">
         {pokemons?.map((pokemon, index) => {
           return (
             <NavLink key={index} className="card" to={`/detail/${pokemon.id}`}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemonByName } from "../../redux/actions/actions";
+import { getPokemonByName, setLoading } from "../../redux/actions/actions";
 
 import s from './Search.module.scss'
 
@@ -10,8 +10,9 @@ export default function Search() {
 
   function onSubmit(e) {
     e.preventDefault();
-    if(name === '') return alert('Debe ingresar un Pokemon')
+    if(name === '') return alert('You must enter a Pokémon')
     dispatch(getPokemonByName(name));
+    dispatch(setLoading(true))
     setName('')
   }
 
@@ -22,7 +23,7 @@ export default function Search() {
   return (
     <>
       <form className={s.container}>
-        <input type="text" placeholder="Pokemon" onChange={onHandle} value={name} name="search" />
+        <input type="text" placeholder="Pokémon" onChange={onHandle} value={name} name="search" />
         <button onClick={onSubmit}>Search</button>
       </form>
     </>

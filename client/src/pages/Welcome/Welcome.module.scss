@@ -18,6 +18,24 @@
     margin: auto;
     width: 50%;
   }
+  .navlink {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    color: rgb(175, 31, 34);
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 30px;
+    border: 3px solid rgb(175, 31, 34);
+    padding: 8px;
+    border-radius: 15px;
+  }
+  .navlink:hover {
+    cursor: pointer;
+    color: #306DB4;
+    border: 3px solid #306DB4;
+    transition: 0.5s;
+  }
 }
 
 .btn {
@@ -33,16 +51,16 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   position: absolute;
-  right: 15%;
+  right: 25%;
   bottom: 0;
   text-decoration: none;
   z-index: 100;
   text-shadow: 0 0 5px 5px black;
-  animation: moves 1.5s ease-in-out infinite;
+  animation: moves 1s ease-in-out infinite;
   font-size: 17px;
 
   span {
-    animation: moves3 1.5s ease-in-out infinite;
+    animation: moves3 1s ease-in-out infinite;
     position: relative;
     background-color: black;
     color: rgb(0, 0, 0);
@@ -65,7 +83,7 @@
     background: rgb(0, 0, 0);
     width: 67px;
     height: 67px;
-    animation: moves1 1.5s ease-in-out infinite;
+    animation: moves1 1s ease-in-out infinite;
   }
   span::after {
     content: "";
@@ -80,7 +98,7 @@
     background: rgb(255, 255, 255);
     width: 53px;
     height: 53px;
-    animation: moves2 1.5s ease-in-out infinite;
+    animation: moves2 1s ease-in-out infinite;
   }
 }
 .btn:hover {

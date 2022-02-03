@@ -7,8 +7,8 @@ export default function Navbar() {
   return (
     <>
       <div className={s.container}>
-        <h1>Pokemon</h1>
-        <NavLink className={s.navlink} to="/create">Create Pokemon</NavLink>
+        <h1>Pokémon</h1>
+        <NavLink className={s.navlink} to="/create">Create Pokémon</NavLink>
         <Search />
       </div>
     </>
